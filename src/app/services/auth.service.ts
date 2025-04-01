@@ -12,7 +12,7 @@ export class AuthService {
 
   private isAuthenticated: boolean = false;
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = environment.apiUrl+'/admin/auth';
 
     constructor(private http: HttpClient) {}
 

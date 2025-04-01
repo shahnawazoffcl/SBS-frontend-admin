@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment.prod'
 })
 export class BikeServiceService {
 
-  private apiUrl = environment.apiUrl;
+  private apiUrl = environment.apiUrl+'/admin/service';
 
   constructor(private http: HttpClient) {}
 

@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+.toast-success {
+  background-color: #28a745 !important;
+}
+
+.toast-error {
+  background-color: #dc3545 !important;
+}

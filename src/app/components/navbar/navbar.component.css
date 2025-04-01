@@ -1,0 +1,13 @@
+.navbar {
+  margin-bottom: 20px;
+}
+
+.navbar-nav li {
+  padding-left: 15px;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center;
+  }
+}

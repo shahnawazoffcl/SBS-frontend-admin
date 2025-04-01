@@ -1,0 +1,59 @@
+<!-- Modal Overlay (background) -->
+<div class="modal-overlay" (click)="onClose()">
+    <!-- Modal Content -->
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h3>Edit Bike Service Details</h3>
+  
+      <div class="modal-body">
+      <!-- Edit Form -->
+      <form (ngSubmit)="onSave()" #editServiceForm="ngForm">
+        <div class="mb-3">
+          <label for="serviceName">Service Name</label>
+          <input type="text" id="serviceName" [(ngModel)]="serviceData.serviceType" name="serviceName" required />
+        </div>
+        
+        <div class="mb-3">
+          <label for="serviceDate">Service Date</label>
+          <input type="date" id="serviceDate" [(ngModel)]="serviceData.preferredTime" name="serviceDate" required />
+        </div>
+  
+        <div class="mb-3">
+          <label for="customerName">Customer Name</label>
+          <input type="text" id="customerName" [(ngModel)]="serviceData.name" name="customerName" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="customerName">Full Address</label>
+          <input type="text" id="address" [(ngModel)]="serviceData.address" name="address" required />
+        </div>
+  
+        <div class="mb-3">
+          <label for="contactNumber">Contact Number</label>
+          <input type="text" id="contactNumber" [(ngModel)]="serviceData.contactNo" name="contactNumber" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="serviceStatus">Service Status</label>
+          <select id="serviceStatus" [(ngModel)]="serviceData.serviceStatus" name="serviceStatus" required >
+            <option *ngFor="let status of statuses" [value]="status">{{status}}
+            </option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="mechanic">Mechanic Assigned</label>
+          <select id="mechanic" [(ngModel)]="serviceData.mechanic" name="mechanic" required >
+            <option *ngFor="let mechanic of mechanics" [value]="mechanic">{{mechanic}}
+            </option>
+          </select>
+        </div>
+
+  
+        <!-- Save and Close buttons -->
+        <button type="submit" [disabled]="!editServiceForm.form.valid">Save</button>
+        <button type="button" (click)="onClose()">Close</button>
+      </form>
+    </div>
+    </div>
+  </div>
+  

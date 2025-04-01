@@ -1,0 +1,33 @@
+<div class="modal-body">
+    <div class="card shadow-sm">
+      <div class="card-body">
+          <div *ngIf="serviceData" class="container">
+            <div class="row">
+
+              <!-- Service Details -->
+              <div class="col-md-8">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><strong>Customer Name:</strong> {{ serviceData.name }}</li>
+                  <li class="list-group-item"><strong>Service Date:</strong> {{ serviceData.preferredTime | date:'longDate' }}</li>
+                  <li class="list-group-item"><strong>Service Status:</strong> {{ serviceData.serviceStatus }}</li>
+                  <li class="list-group-item"><strong>Address:</strong> {{ serviceData.address }}</li>
+                  <li class="list-group-item"><strong>Vehicle:</strong> {{ serviceData.bikeModel }}</li>
+                  <li class="list-group-item"><strong>Service Type:</strong> {{ serviceData.serviceType }}</li>
+
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>
+          </div>
+      </div>
+    </div>
+  
+
+
+  

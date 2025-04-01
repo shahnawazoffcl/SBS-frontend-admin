@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="bike-service-container">
+  
+
+  <div class="search-container">
+    <h2>Pending Bike Services</h2>
+    <form>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange()"
+        placeholder="Search by bike name or customer name"
+        class="search-input"
+        name="search-box"
+      />
+    </form>
+  </div>
+
+  <!-- parent.component.html -->
+
+<app-modal *ngIf="isModalOpen" (onSave)="handleSave($event)"></app-modal>
+
+
+  <div class="bike-service-list">
+    <div *ngFor="let bikeService of bikeServices" class="bike-service-card">
+        <button
+      class="cancel-booking-btn"
+      title="Cancel Booking"
+    >
+      <img src="../assets/edit.jpg" alt="Edit" class="edit-icon" (click)="onEdit(bikeService)"/>
+      <span class="edit-text" >Edit</span>
+    </button>
+      <h3>{{ bikeService.name }}</h3>
+      <h4>{{ bikeService.bikeModel }}</h4>
+      <p class="status" [ngClass]="bikeService.serviceStatus">
+        {{ bikeService.serviceStatus }}
+      </p>
+      
+    </div>
+  </div>
+</div>

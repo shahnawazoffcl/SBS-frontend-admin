@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
 import { ModalComponent } from './components/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';

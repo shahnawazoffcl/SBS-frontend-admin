@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { response } from 'express';
-import { AuthService } from 'src/app/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import {UserSignIn } from 'src/app/models/UserSignIn';
 
 

@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserLoginDTO } from './models/UserResponseDTO';
+import { UserLoginDTO } from '../models/UserResponseDTO';
 import { map, Observable, tap } from 'rxjs';
-import { UserSignIn } from './models/UserSignIn';
-import { response } from 'express';
+import { UserSignIn } from '../models/UserSignIn';
+import {environment} from '../../environments/environment.prod'
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class AuthService {
 
   private isAuthenticated: boolean = false;
 
-   private apiUrl = 'http://localhost:8082/admin/auth'; // Backend API URL
-  
+  private apiUrl = environment.apiUrl;
+
     constructor(private http: HttpClient) {}
 
   login(user:UserSignIn){

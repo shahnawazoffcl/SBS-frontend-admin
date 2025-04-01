@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { UserSignIn } from '../models/UserSignIn';
 import { UserLoginDTO } from '../models/UserResponseDTO';
+import {environment} from '../../environments/environment.prod'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserService {
 
   [x: string]: any;
   
-  private apiServerUrl = 'http://localhost:8081/admin';
+  private apiServerUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

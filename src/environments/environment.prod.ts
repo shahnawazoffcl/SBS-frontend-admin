@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://localhost:8082',
+    apiUrl: 'https://sbs-backend-admin-production.up.railway.app',
     otherVar: 'prodValue'
   };
   

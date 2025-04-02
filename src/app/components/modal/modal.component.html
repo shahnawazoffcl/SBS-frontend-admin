@@ -43,7 +43,7 @@
         <div class="mb-3">
           <label for="mechanic">Mechanic Assigned</label>
           <select id="mechanic" [(ngModel)]="serviceData.mechanic" name="mechanic" required >
-            <option *ngFor="let mechanic of mechanics" [value]="mechanic">{{mechanic}}
+            <option *ngFor="let mechanic of mechanics" [value]="mechanic.name">{{mechanic.name}}
             </option>
           </select>
         </div>

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BikeService } from 'src/app/models/bikeService';
 import {environment} from '../../environments/environment.prod'
+import { Mechanic } from '../models/mechanic';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,7 @@ export class BikeServiceService {
     const headers = new HttpHeaders({
       token:'' + localStorage.getItem('token'),
       'Content-Type': 'application/json'});
-    return this.http.get<String[]>(`${this.apiUrl}/mechanics`, { headers });
+    return this.http.get<Mechanic[]>(`${this.apiUrl}/mechanics`, { headers });
   }
   
 }

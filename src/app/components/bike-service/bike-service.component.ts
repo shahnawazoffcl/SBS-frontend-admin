@@ -94,6 +94,8 @@ export class BikeServiceComponent implements OnInit {
         if (index !== -1) {
           this.bikeServices[index] = updatedService;
         }
+        console.log("updated: ",updatedService);
+        
         this.bikeServiceService.uodateService(updatedService).subscribe(
         (response)=>{
           console.log("service updated");

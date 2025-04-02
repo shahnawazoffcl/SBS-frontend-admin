@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Mechanic } from 'src/app/models/mechanic';
 import { BikeServiceService } from 'src/app/services/bike-service.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class ModalComponent { // Event to notify the parent about saving the edi
   serviceData:any;
   statuses: string[] = ['COMPLETED', 'PENDING', 'CANCELED'];
   selectedStatus:string='';
-  mechanics: String[]=[];
+  mechanics: Mechanic[]=[];
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,

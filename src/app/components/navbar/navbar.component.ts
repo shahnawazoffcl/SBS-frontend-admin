@@ -9,33 +9,41 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent {
 
-selectedLabel:string = 'pending';
-  constructor(private router: Router, private authService:AuthService) {
+  selectedLabel: string = 'pending';
+  isMobileMenuOpen: boolean = false;
+
+  constructor(private router: Router, private authService: AuthService) {
     // Set active label on route change
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        if (event.url.includes('pending')) {
+        if (event.url.includes('pending') || event.url.includes('home')) {
           this.selectedLabel = 'pending';
         } else if (event.url.includes('completed')) {
           this.selectedLabel = 'complete';
-        } else if (event.url.includes('expenses')) {
+        } else if (event.url.includes('expense')) {
           this.selectedLabel = 'expense';
+        } else if (event.url.includes('mechanics')) {
+          this.selectedLabel = 'mechanics';
         }
       }
     });
   }
 
-setActiveLabel(arg0: string) {
+  setActiveLabel(label: string) {
+    this.selectedLabel = label;
+    // Close mobile menu when a link is clicked
+    this.isMobileMenuOpen = false;
+  }
 
-}
-  // Optionally, we can manage the navbar state in TypeScript if needed
-  isMenuOpen: boolean = false;
-
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
   logout() {
     this.authService.logout();
-    }
+    this.isMobileMenuOpen = false;
+  }
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
 }

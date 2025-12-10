@@ -1,36 +1,77 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <p class="navbar-brand" >Doorstep Service Admin</p>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav class="modern-navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <div class="brand-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+          <path d="M19 15L20.09 18.26L24 19L20.09 19.74L19 23L17.91 19.74L14 19L17.91 18.26L19 15Z" fill="currentColor"/>
+          <path d="M5 15L6.09 18.26L10 19L6.09 19.74L5 23L3.91 19.74L0 19L3.91 18.26L5 15Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="brand-text">Satnam Bike Service</span>
+      <span class="brand-subtitle">Admin Portal</span>
+    </div>
+    
+    <button class="navbar-toggler" type="button" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
+    
+    <div *ngIf="isLoggedIn()" class="navbar-menu" [class.active]="isMobileMenuOpen">
+      <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" routerLink="/home"
-          [ngClass]="{'active': selectedLabel === 'pending'}" 
-            (click)="setActiveLabel('pending')">
-          Service Status</a>
+             [class.active]="selectedLabel === 'pending'" 
+             (click)="setActiveLabel('pending')">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+            </svg>
+            <span>Service Status</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/completed"
-          [ngClass]="{'active': selectedLabel === 'complete'}" 
-            (click)="setActiveLabel('complete')">
-          Completed Services</a>
+             [class.active]="selectedLabel === 'complete'" 
+             (click)="setActiveLabel('complete')">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+            </svg>
+            <span>Completed Services</span>
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/expense"
-          [ngClass]="{'active': selectedLabel === 'expense'}" 
-            (click)="setActiveLabel('expense')">
-          Expense</a>
+             [class.active]="selectedLabel === 'expense'" 
+             (click)="setActiveLabel('expense')">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="currentColor"/>
+            </svg>
+            <span>Expenses</span>
+          </a>
         </li>
-
         <li class="nav-item">
-          <a class="nav-link" routerLink="/login"
-            (click)="logout()">
-          LogOut</a>
+          <a class="nav-link" routerLink="/mechanics"
+             [class.active]="selectedLabel === 'mechanics'" 
+             (click)="setActiveLabel('mechanics')">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Mechanics</span>
+          </a>
         </li>
-        
+        <li class="nav-item nav-divider"></li>
+        <li class="nav-item">
+          <a class="nav-link logout-link" routerLink="/login" (click)="logout()">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/>
+            </svg>
+            <span>Logout</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

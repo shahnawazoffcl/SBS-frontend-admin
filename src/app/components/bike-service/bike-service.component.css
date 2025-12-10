@@ -1,109 +1,422 @@
-.bike-service-container {
-    width: 80%;
-    margin: 20px auto;
+/* Page Container */
+.page-container {
+  min-height: 100vh;
+  background: var(--background-color);
+}
+
+/* Page Header */
+.page-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.header-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: white;
+}
+
+.page-subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.header-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  text-align: center;
+  min-width: 120px;
+  transition: all var(--transition-fast);
+}
+
+.stat-card:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Content Container */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Search Section */
+.search-section {
+  margin-bottom: 2rem;
+}
+
+.search-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+  min-width: 300px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 3rem;
+  font-size: 0.875rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  background: var(--surface-color);
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Service Card */
+.service-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.service-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--primary-color);
+}
+
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: linear-gradient(135deg, var(--background-color) 0%, rgba(37, 99, 235, 0.02) 100%);
+}
+
+.service-info {
+  flex: 1;
+}
+
+.customer-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.bike-model {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 500;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  background: var(--surface-color);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.action-btn:hover {
+  background: var(--background-color);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+.edit-btn:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.service-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.detail-value {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  background: var(--background-color);
+  border-top: 1px solid var(--border-color);
+}
+
+.status-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Status Badge Styles */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.pending {
+  background: rgb(245 158 11 / 0.1);
+  color: var(--warning-color);
+  border: 1px solid rgb(245 158 11 / 0.2);
+}
+
+.status-badge.inprogress {
+  background: rgb(6 182 212 / 0.1);
+  color: var(--info-color);
+  border: 1px solid rgb(6 182 212 / 0.2);
+}
+
+.status-badge.completed {
+  background: rgb(16 185 129 / 0.1);
+  color: var(--success-color);
+  border: 1px solid rgb(16 185 129 / 0.2);
+}
+
+/* Empty State */
+.empty-state {
     text-align: center;
-  }
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+}
 
-
-  .bike-service-card {
-    position: relative; /* Positioning the cancel button inside the card */
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 8px;
+.empty-icon {
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
   }
   
-  .cancel-booking-btn {
-    position: absolute; /* Positioning the button absolutely */
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+.empty-state h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
   }
   
-  .edit-icon {
-    width: 20px; /* Adjust width of the 'X' image */
-    height: 20px; /* Adjust height of the 'X' image */
-  }
-  .edit-text {
-    display: none; /* Hide the text by default */
-    margin-left: 8px; /* Space between the 'X' image and the text */
-    font-size: 14px;
-    color: rgba(121, 20, 87, 0.443);
-  }
-  
-  .cancel-booking-btn:hover .cancel-text {
-    display: inline-block; /* Show the text when the button is hovered */
-  }
+.empty-state p {
+  font-size: 1rem;
+  margin: 0;
+}
 
-  .cancel-booking-btn:hover .cancel-icon {
-    display: none ; /* Optional: Add hover effect */
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
   }
   
-
-  h4{
-    color: chocolate;
+  .page-title {
+    font-size: 2rem;
   }
+  
+  .header-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .stat-card {
+    flex: 1;
+    min-width: auto;
+    padding: 1rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
   .search-container {
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: stretch;
   }
   
-  .search-input {
-    width: 300px;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    outline: none;
-    transition: border-color 0.3s ease;
+  .search-input-wrapper {
+    min-width: auto;
   }
   
-  .search-input:focus {
-    border-color: #3498db;
-  }
-  .bike-service-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    gap: 20px;
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
-  .bike-service-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: transform 0.3s ease;
+  .service-card {
+    margin: 0;
   }
   
-  .bike-service-card:hover {
-    transform: translateY(-5px);
+  .card-header {
+    padding: 1rem;
   }
   
-  .bike-service-card h3 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+  .card-body {
+    padding: 1rem;
   }
   
-  .status {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-    font-weight: bold;
+  .card-footer {
+    padding: 0.75rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-container {
+    padding: 0 1rem;
   }
   
-  .status.PENDING {
-    color: #f39c12;
+  .page-header {
+    padding: 1.5rem 0;
   }
   
-  .status.INPROGRESS {
-    color: #3498db;
+  .header-content {
+    padding: 0 1rem;
   }
   
-  .status.COMPLETED {
-    color: #2ecc71;
+  .page-title {
+    font-size: 1.75rem;
   }
-  .cancel-booking{
-    max-width: 10px;
+  
+  .header-stats {
+    gap: 1rem;
+  }
+  
+  .stat-card {
+    padding: 0.75rem;
+  }
+  
+  .stat-number {
+    font-size: 1.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+  }
   }
   

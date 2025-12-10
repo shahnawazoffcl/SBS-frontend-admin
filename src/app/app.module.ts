@@ -17,6 +17,7 @@ import { CompletedServicesComponent } from './components/completed-services/comp
 import { ExpensesComponent } from './components/expenses/expenses.component';
 import { ViewModalComponent } from './components/view-modal/view-modal.component';
 import { InDevComponent } from './components/in-dev/in-dev.component';
+import { MechanicsComponent } from './components/mechanics/mechanics.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { InDevComponent } from './components/in-dev/in-dev.component';
     CompletedServicesComponent,
     ExpensesComponent,
     ViewModalComponent,
-    InDevComponent
+    InDevComponent,
+    MechanicsComponent
   ],
 imports: [
 BrowserModule,

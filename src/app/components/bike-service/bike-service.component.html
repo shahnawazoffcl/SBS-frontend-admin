@@ -1,41 +1,118 @@
-<app-navbar></app-navbar>
-<div class="bike-service-container">
-  
+<div class="page-container">
+  <div class="page-header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1 class="page-title">Service Management</h1>
+        <p class="page-subtitle">Manage and track bike service requests</p>
+      </div>
+      <div class="header-stats">
+        <div class="stat-card">
+          <div class="stat-number">{{ bikeServices.length }}</div>
+          <div class="stat-label">Total Services</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{{ getPendingCount() }}</div>
+          <div class="stat-label">Pending</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">{{ getInProgressCount() }}</div>
+          <div class="stat-label">In Progress</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="content-container">
+    <div class="search-section">
   <div class="search-container">
-    <h2>Pending Bike Services</h2>
-    <form>
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
       <input
         type="text"
         [(ngModel)]="searchTerm"
         (input)="onSearchChange()"
-        placeholder="Search by bike name or customer name"
+            placeholder="Search by customer name or bike model..."
         class="search-input"
         name="search-box"
       />
-    </form>
+        </div>
+        <button class="btn btn-primary" (click)="refreshServices()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 4v6h6M23 20v-6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Refresh
+        </button>
+      </div>
   </div>
-
-  <!-- parent.component.html -->
 
 <app-modal *ngIf="isModalOpen" (onSave)="handleSave($event)"></app-modal>
 
-
-  <div class="bike-service-list">
-    <div *ngFor="let bikeService of bikeServices" class="bike-service-card">
-        <button
-      class="cancel-booking-btn"
-      title="Cancel Booking"
-    >
-      <img src="../assets/edit.jpg" alt="Edit" class="edit-icon" (click)="onEdit(bikeService)"/>
-      <span class="edit-text" >Edit</span>
-    </button>
-      <h3>{{ bikeService.name }}</h3>
-      <h4>{{ bikeService.bikeModel }}</h4>
-      <p class="status" [ngClass]="bikeService.serviceStatus">
+    <div class="services-grid">
+      <div *ngFor="let bikeService of bikeServices" class="service-card">
+        <div class="card-header">
+          <div class="service-info">
+            <h3 class="customer-name">{{ bikeService.name }}</h3>
+            <p class="bike-model">{{ bikeService.bikeModel }}</p>
+          </div>
+          <div class="card-actions">
+            <button class="action-btn edit-btn" (click)="onEdit(bikeService)" title="Edit Service">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <div class="service-details">
+            <div class="detail-item">
+              <span class="detail-label">Service ID:</span>
+              <span class="detail-value">#{{ bikeService.id || 'N/A' }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Phone:</span>
+              <span class="detail-value">{{ bikeService.contactNo || 'N/A' }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Address:</span>
+              <span class="detail-value">{{ bikeService.address || 'N/A' }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Preferred Time:</span>
+              <span class="detail-value">{{ formatPreferredTime(bikeService.preferredTime) }}</span>
+            </div>
+            <div class="detail-item" *ngIf="bikeService.serviceType">
+              <span class="detail-label">Service Type:</span>
+              <span class="detail-value">{{ bikeService.serviceType || 'N/A' }}</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="status-section">
+            <span class="status-badge" [ngClass]="getStatusClass(bikeService.serviceStatus)">
         {{ bikeService.serviceStatus }}
-      </p>
-      
+            </span>
+            <span class="service-date">ID: #{{ bikeService.id || 'N/A' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="bikeServices.length === 0" class="empty-state">
+      <div class="empty-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>No services found</h3>
+      <p>There are no bike services to display at the moment.</p>
     </div>
   </div>
 </div>

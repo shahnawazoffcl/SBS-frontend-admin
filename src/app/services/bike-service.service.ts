@@ -49,5 +49,33 @@ export class BikeServiceService {
       'Content-Type': 'application/json'});
     return this.http.get<Mechanic[]>(`${this.apiUrl}/mechanics`, { headers });
   }
+
+  getAllMechanics(): Observable<Mechanic[]> {
+    const headers = new HttpHeaders({
+      token:'' + localStorage.getItem('token'),
+      'Content-Type': 'application/json'});
+    return this.http.get<Mechanic[]>(`${this.apiUrl}/mechanics`, { headers });
+  }
+
+  addMechanic(mechanic: Mechanic): Observable<Mechanic> {
+    const headers = new HttpHeaders({
+      token:'' + localStorage.getItem('token'),
+      'Content-Type': 'application/json'});
+    return this.http.post<Mechanic>(`${this.apiUrl}/mechanics`, mechanic, { headers });
+  }
+
+  updateMechanic(mechanic: Mechanic): Observable<Mechanic> {
+    const headers = new HttpHeaders({
+      token:'' + localStorage.getItem('token'),
+      'Content-Type': 'application/json'});
+    return this.http.put<Mechanic>(`${this.apiUrl}/mechanics/${mechanic.id}`, mechanic, { headers });
+  }
+
+  deleteMechanic(id: String): Observable<any> {
+    const headers = new HttpHeaders({
+      token:'' + localStorage.getItem('token'),
+      'Content-Type': 'application/json'});
+    return this.http.delete(`${this.apiUrl}/mechanics/${id}`, { headers });
+  }
   
 }
